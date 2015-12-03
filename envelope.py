@@ -31,9 +31,11 @@ def write_envelopes(out, from_addr, to_addrs):
 
 
 def load_csv(filename):
-    # This logic is necessarily use case specific specific, but for
+    # This logic is necessarily use case specific, but for
     # our list we just have three columns of addresses and an optional
     # fourth column that says "yes" for addresses we wanted printed.
+    #
+    # Note the first row is ignored as it is assu,ed to have a header row
     with open(filename) as f:
         for i, row in enumerate(csv.reader(f)):
             if i == 0:
