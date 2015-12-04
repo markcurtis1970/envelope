@@ -1,4 +1,6 @@
-## Background
+## From the original creator:
+
+### Background
 
 I recently had occasion to print a bunch of envelopes with different
 addresses.
@@ -19,7 +21,7 @@ somehow managed to swap the last two lines of every address.
 And so, tasked with going through that ordeal again, it suddenly hit
 me: it's not hard to generate a PDF with some text.
 
-## The Code
+### The Code
 
 The code is shorter than this README, but briefly:
 
@@ -28,10 +30,16 @@ The code is shorter than this README, but briefly:
 2. Modify the constants in the `__main__` block of the code.
 3. Run it, print the PDF using whatever PDF program you like.
 
-## Additions
+## Modifications and Additions
 
-Adapted to include modofications to allow passing in of from address
-also from a csv file. Argument checks for input and such.
+Adapted to include modofications to allow passing in of from address also from a csv file. Argument checks for input and such. Pushed additions into a new script to try and preserve the original script to reference back to.
 
-Pushed additions into a new script to try and preserve the original
-script to reference back to
+### Scripts and useage
+
+`envelope.py`
+
+This script is simply run, and pulls addresses from the local fiel address.csv. The from address is set in the code. Remember the script will ignore the first line in the address.csv file as it assumes a header row. It also has a useful little feature to put a "yes" into the last column to select wether to print or not
+
+`christmas-envelope.py`
+
+Modified from the above script, takes two arguments of csv files for "to" addresses and "from" addresses. It also changes the size of the font anf font type to allow to different size "from" and "to" address.
