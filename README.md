@@ -27,3 +27,11 @@ The code is shorter than this README, but briefly:
    one line per column.  (We used Google Docs, which can export CSV.)
 2. Modify the constants in the `__main__` block of the code.
 3. Run it, print the PDF using whatever PDF program you like.
+
+## Additions
+
+Adapted to include modofications to allow passing in of from address
+also from a csv file. Argument checks for input and such.
+
+Pushed additions into a new script to try and preserve the original
+script to reference back to
