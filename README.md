@@ -38,8 +38,12 @@ Adapted to include modofications to allow passing in of from address also from a
 
 `envelope.py`
 
+The original script from the creator, keeping this here for reference
+
 This script is simply run, and pulls addresses from the local fiel address.csv. The from address is set in the code. Remember the script will ignore the first line in the address.csv file as it assumes a header row. It also has a useful little feature to put a "yes" into the last column to select wether to print or not
 
 `christmas-envelope.py`
 
-Modified from the above script, takes two arguments of csv files for "to" addresses and "from" addresses. It also changes the size of the font anf font type to allow to different size "from" and "to" address.
+Modified from the above script, takes two arguments of csv files for "to" addresses and "from" addresses. It also changes the size of the font anf font type to allow to different size "from" and "to" address. Generally speaking I export the addresses from google sheets into the <file name>.csv then I'll copy to `address.csv` where I can edit / alter and fine tune anything.
+
+Note: if you have a blank field then this will show up as an empty line, so for the moment the quick hack is to edit the csv file to remove the double commas and replace for a single one eg `s/,,/,/`

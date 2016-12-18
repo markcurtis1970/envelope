@@ -33,25 +33,37 @@ def write_envelopes(out, from_addrs, to_addrs):
             for i, line in enumerate(from_addr):
                 cr.move_to(MARGIN * INCHES_TO_POINTS,
                            (MARGIN * INCHES_TO_POINTS) + 12 + (12 * i))
-                cr.show_text(line)
+                if line != "":
+                    cr.show_text(line)
 
         cr.set_font_size(14)
         for i, line in enumerate(to_addr):
             cr.move_to(1.5 * INCHES_TO_POINTS,
                        (2.0* INCHES_TO_POINTS) + 12 + (22 * i))
             cr.show_text(line)
+
         cr.show_page()
 
     surface.flush()
     surface.finish()
 
 
-def load_csv(filename):
-    # This logic is necessarily use case specific, but for
-    # our list we just have three columns of addresses and an optional
-    # fourth column that says "yes" for addresses we wanted printed.
-    #
-    # Note the first row is ignored as it is assu,ed to have a header row
+def load_send_csv(filename):
+    # Note the first row is ignored as it is assumed to have a header row
+    with open(filename) as f:
+        for i, row in enumerate(csv.reader(f)):
+            if i == 0:
+                continue
+
+            type = ''
+           # if len(row) > 3:
+           #     type = row[3].strip()
+           # if type != 'yes':
+           #     continue
+            yield row[1:7]
+
+def load_ret_csv(filename):
+    # Note the first row is ignored as it is assumed to have a header row
     with open(filename) as f:
         for i, row in enumerate(csv.reader(f)):
             if i == 0:
@@ -66,12 +78,9 @@ def load_csv(filename):
 
 
 if __name__ == '__main__':
-    FROM_ADDR = ('Evan + Meena',
-                 '[elided]',
-                 'San Francisco, CA 94110')
     INFILE = sys.argv[1]
     RETFILE = sys.argv[2]
     OUTFILE = 'envelopes.pdf'
     with open(OUTFILE, 'w') as f:
-        write_envelopes(f, list(load_csv(RETFILE)), list(load_csv(INFILE)))
+        write_envelopes(f, list(load_ret_csv(RETFILE)), list(load_send_csv(INFILE)))
     print 'wrote %s.' % OUTFILE
